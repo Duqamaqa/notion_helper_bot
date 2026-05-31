@@ -12,6 +12,7 @@ venv/
 logs/
 
 token*.json
+*token*.json
 *token*.pickle
 *credentials*.json
 *client_secret*.json
@@ -19,3 +20,5 @@ google_client_secret*.json
 service-account*.json
 *.key
 *.pem
+*.sqlite3
+*.sqlite3-*
