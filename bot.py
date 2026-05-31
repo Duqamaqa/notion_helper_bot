@@ -30,7 +30,7 @@ NOTION_TOKEN = os.getenv("NOTION_TOKEN")
 NOTION_DATABASE_ID = os.getenv("NOTION_DATABASE_ID")
 NOTION_DATABASE_NAME = os.getenv("NOTION_DATABASE_NAME", "To do list")
 NOTION_VERSION = os.getenv("NOTION_VERSION", "2022-06-28")
-ALLOWED_USERNAME = os.getenv("ALLOWED_USERNAME", "aaronikuka").lstrip("@").lower()
+ALLOWED_USERNAME = (os.getenv("ALLOWED_USERNAME") or "").lstrip("@").lower()
 BUTTON_NOW = "What should I do now?"
 BUTTON_QUICK = "Show me quick tasks"
 BUTTON_TWENTY = "What can I finish in 20 minutes?"
@@ -90,6 +90,8 @@ RESOLVED_DATABASE_ID: Optional[str] = None
 def is_allowed_user(update: Update) -> bool:
     user = update.effective_user
     username = (user.username or "").lower() if user else ""
+    if not ALLOWED_USERNAME:
+        return True
     return username == ALLOWED_USERNAME
 
 
